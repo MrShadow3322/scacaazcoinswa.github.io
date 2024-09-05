@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RatCoin App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .header a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .main-content {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        .balance img {
+            width: 100px;
+            height: auto;
+        }
+        .balance {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .airdrop-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #6200ea;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .airdrop-popup {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            width: 90%;
+            background-color: #333333;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .airdrop-popup select {
+            width: 100%;
+            padding: 10px;
+        }
+        .airdrop-popup button {
+            padding: 10px 20px;
+            background-color: #03dac6;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#" onclick="showPage('main')">Главная</a>
+        <a href="#" onclick="showPage('tasks')">Задания</a>
+        <a href="#" onclick="showPage('airdrop')">Airdrop</a>
+    </div>
+    <div id="main" class="main-content visible">
+        <div class="balance">
+            <img src="https://i.ibb.co/kgxdGqs/RAAAAAAAAAAAATCuette-of-a-rat-on-xl-1024-v1-0-photoaidcom-cropped.png" alt="RatCoin">
+            <h2>Ваш баланс: <span id="balance">0</span> RatCoin</h2>
+        </div>
+    </div>
+    <div id="tasks" class="main-content">
+        <h2>Задания</h2>
+        <p>Подпишитесь на наш Telegram канал <a href="https://t.me/RatcCoin" target="_blank">здесь</a> и получите 1000 RatCoin.</p>
+    </div>
+    <div id="airdrop" class="main-content">
+        <h2>Airdrop</h2>
+        <button class="airdrop-btn" onclick="showAirdropPopup()">Добавить кошелёк</button>
+        <div id="airdrop-popup" class="airdrop-popup">
+            <p>Выберите кошелёк:</p>
+            <select id="wallet-select">
+                <option value="telegram_wallet">Telegram Wallet</option>
+                <option value="tonkeeper">Tonkeeper</option>
+                <!-- Добавьте другие опции по мере необходимости -->
+            </select>
+            <button onclick="linkWallet()">Привязать</button>
+        </div>
+    </div>
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.main-content').forEach(page => {
+                page.classList.remove('visible');
+            });
+            document.getElementById(pageId).classList.add('visible');
+        }
+
+        function showAirdropPopup() {
+            document.getElementById('airdrop-popup').style.display = 'block';
+        }
+
+        function linkWallet() {
+            const wallet = document.getElementById('wallet-select').value;
+            // Привязка кошелька через Telegram и отправка номера администратору
+            // Здесь необходимо интегрировать Telegram API для обработки
+            console.log('Привязка кошелька:', wallet);
+            alert('Кошелёк привязан. Номер кошелька отправлен администратору.');
+            document.getElementById('airdrop-popup').style.display = 'none';
+        }
+
+        // Пример случайного баланса
+        function getRandomBalance() {
+            return Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+        }
+
+        document.getElementById('balance').textContent = getRandomBalance();
+    </script>
+</body>
+</html>
